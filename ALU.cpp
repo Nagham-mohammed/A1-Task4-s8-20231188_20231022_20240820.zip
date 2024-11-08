@@ -77,19 +77,25 @@ string firstFourBits, secondFourBits;
 
 void ALU:: fromDecimalToBinary(ll decimalNumber) {
     binaryString = "";  // Reset binaryString for each conversion
-    while (decimalNumber > 0) {
-        int remainder = decimalNumber % 2;
+    while (decimalNumber > 0)
+        {
+         // take the reminderof division by 2 (0.5 or 0)
+        int remainder = decimalNumber % 2; 
+        // if 0 the binary will be 0 if 0.5 the binary will be 1
         binaryString = to_string(remainder) + binaryString;
         decimalNumber /= 2;
     }
-    if (binaryString.length() < 8) {
+    if (binaryString.length() < 8)
+    { 
+        // if number of digits less than 8 add 0 at the beginning of binary number
         binaryString = string(8 - binaryString.length(), '0') + binaryString;
     }
 }
 
-string ALU :: hexToBinary(string hexNumber) {
+   string ALU :: hexToBinary(string hexNumber) {
    transform(hexNumber.begin(), hexNumber.end(), hexNumber.begin(), ::toupper);
     const unordered_map<char, string> hexToBinaryMap = {
+       //every value of hexa has a key of binary
             {'0', "0000"}, {'1', "0001"}, {'2', "0010"}, {'3', "0011"},
             {'4', "0100"}, {'5', "0101"}, {'6', "0110"}, {'7', "0111"},
             {'8', "1000"}, {'9', "1001"}, {'A', "1010"}, {'B', "1011"},
@@ -100,6 +106,7 @@ string ALU :: hexToBinary(string hexNumber) {
 
     for (char c : hexNumber) {
         // Check if hexDigit exists in the map
+        // if hexa binary exists in map add the equivilant value from binary numbers
         if (hexToBinaryMap.find(c) == hexToBinaryMap.end()) {
             cout << "Error: Invalid hex digit '" << c << "' in input." << endl;
             return "";  // Return an empty string or handle the error as needed
